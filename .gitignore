@@ -1,3 +1,7 @@
+#DATABASE
+database/
+data/
+
 # Logs
 logs
 *.log
