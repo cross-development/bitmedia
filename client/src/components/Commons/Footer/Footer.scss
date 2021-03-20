@@ -1,0 +1,40 @@
+.footer {
+	color: #fff;
+	background-color: #1c3b55;
+	padding: 1em;
+	max-width: 100%;
+
+	background: linear-gradient(90.74deg, #255d8b 1.6%, #3a80ba 96.44%);
+
+	@media screen and (min-width: 768px) {
+		padding: 1em 4em;
+	}
+
+	@media screen and (min-width: 1280px) {
+		padding: 0.8em 10em;
+	}
+}
+
+.footer-info {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+
+	&_logo {
+		font-size: 1em;
+
+		@media screen and (min-width: 1280px) {
+			font-size: 1.2em;
+		}
+	}
+
+	&_rights {
+		font-size: 0.7em;
+		margin: 0.2em 0;
+	}
+
+	&_copy {
+		font-size: 0.7em;
+	}
+}

@@ -1,0 +1,11 @@
+.logo-wrapper {
+	text-align: left;
+
+	.logo-link {
+		color: #fff;
+
+		@media screen and (min-width: 1280px) {
+			font-size: 1.2em;
+		}
+	}
+}
