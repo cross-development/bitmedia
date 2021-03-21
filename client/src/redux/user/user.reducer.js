@@ -9,7 +9,7 @@ const users = createReducer(null, {
 });
 
 const userStats = createReducer([], {
-	[userActions.getStatByUserIdSuccess]: (state, { payload }) => payload,
+	[userActions.getStatByUserIdSuccess]: (state, { payload }) => [...payload],
 });
 
 const error = createReducer(null, {

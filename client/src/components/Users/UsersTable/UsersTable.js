@@ -48,6 +48,8 @@ UsersTable.propTypes = {
 			email: PropTypes.string.isRequired,
 			gender: PropTypes.string.isRequired,
 			ip_address: PropTypes.string.isRequired,
+			total_clicks: PropTypes.number.isRequired,
+			total_page_views: PropTypes.number.isRequired,
 		}).isRequired,
 	).isRequired,
 };

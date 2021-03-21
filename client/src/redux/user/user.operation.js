@@ -20,10 +20,7 @@ const getStatByUserId = ({ id, fromDate, toDate }) => dispatch => {
 
 	axios
 		.get(`/api/user/${id}?from=${fromDate}&to=${toDate}`)
-		.then(data => {
-			console.log('data', data);
-			// dispatch(userActions.getStatByUserIdSuccess(data));
-		})
+		.then(({ data }) => dispatch(userActions.getStatByUserIdSuccess(data)))
 		.catch(error => dispatch(userActions.getStatByUserIdFailure(error)));
 };
 
