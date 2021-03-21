@@ -20,7 +20,7 @@ const HeaderSection = () => (
 			</p>
 
 			<button className="head-info_button">
-				<Link to="/user">Views Stats</Link>
+				<Link to="/user?count=16&page=1">Views Stats</Link>
 			</button>
 		</div>
 

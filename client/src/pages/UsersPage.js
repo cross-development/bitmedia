@@ -1,8 +1,8 @@
 //Core
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 //Components
-import { UsersTable } from 'components/Users';
+import { UsersTable, UsersPagination } from 'components/Users';
 import { Loader } from 'components/Commons';
 //Packages
 import queryString from 'query-string';
@@ -10,26 +10,39 @@ import queryString from 'query-string';
 import { userOperations, userHooks } from 'redux/user';
 
 const UsersPage = () => {
+	const history = useHistory();
 	const location = useLocation();
+
 	const users = userHooks.useGetUsers();
 	const loading = userHooks.useGetLoading();
 
-	const getAllUsers = userHooks.useUserAction(userOperations.getAllUsers);
-
-	const parsed = queryString.parse(location?.search);
+	const parsed = queryString.parse(location.search);
 	const count = parsed.count;
 	const page = parsed.page;
 
+	const getAllUsers = userHooks.useUserAction(userOperations.getAllUsers);
+
 	useEffect(() => {
-		getAllUsers({ count, page });
-	}, [count, getAllUsers, page]);
+		getAllUsers({ page, count });
+	}, [getAllUsers, page, count]);
+
+	const handleChangePaginate = ({ selected }) => {
+		history.replace({
+			pathname: location.pathname,
+			search: `count=${count}&page=${selected + 1}`,
+		});
+	};
 
 	return (
-		<div>
+		<>
 			{loading && <Loader onLoad={loading} />}
 
 			{users && <UsersTable users={users.results} />}
-		</div>
+
+			{users && (
+				<UsersPagination totalPages={users.totalPages} onChangePaginate={handleChangePaginate} />
+			)}
+		</>
 	);
 };
 

@@ -6,9 +6,9 @@ import userActions from './user.action';
 //Axios defaults config
 axios.defaults.baseURL = `https://morning-sierra-40406.herokuapp.com`;
 
-const getAllUsers = ({ count = 1, page = 1 }) => dispatch => {
+const getAllUsers = ({ page = 1, count = 16 }) => dispatch => {
 	dispatch(userActions.getUsersRequest());
-	
+
 	axios
 		.get(`/api/user?count=${count}&page=${page}`)
 		.then(({ data }) => dispatch(userActions.getUsersSuccess(data)))

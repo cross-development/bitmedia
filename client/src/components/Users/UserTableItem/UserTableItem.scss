@@ -1,0 +1,12 @@
+.user-table_row {
+	& td a {
+		display: block;
+	}
+
+	@media screen and (min-width: 1280px) {
+		& td:nth-of-type(n + 4),
+		& td:first-child {
+			text-align: center;
+		}
+	}
+}
