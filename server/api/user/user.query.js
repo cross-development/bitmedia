@@ -39,7 +39,7 @@ class UserQuery {
 		const sql = `
             INSERT or REPLACE INTO users 
                 (id, first_name, last_name, email, gender, ip_address) 
-                VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?)
         `;
 
 		return this.dao.run(sql, [id, first_name, last_name, email, gender, ip_address]);
@@ -51,7 +51,7 @@ class UserQuery {
 		const sql = `
             INSERT or REPLACE INTO users_statistic 
                 (user_id, date, page_views, clicks)
-                VALUES (?, ?, ?, ?)
+            VALUES (?, ?, ?, ?)
         `;
 
 		return this.dao.run(sql, [user_id, date, page_views, clicks]);
@@ -59,7 +59,12 @@ class UserQuery {
 
 	getAllUsers(limit, offset) {
 		const sql = `
-            SELECT * FROM users LIMIT ${limit} OFFSET ${offset}
+            SELECT users.*,
+                SUM(users_statistic.page_views) as total_page_views,
+                SUM(users_statistic.clicks) as total_clicks
+            FROM users, users_statistic
+            WHERE users.id = users_statistic.user_id
+            LIMIT ${limit} OFFSET ${offset}
         `;
 
 		return this.dao.all(sql);
